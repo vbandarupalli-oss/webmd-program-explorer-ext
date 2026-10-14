@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WebMD Campaign Insights · Program Explorer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="wordmark"><span class="wm-web">Web</span><span class="wm-md">MD</span></span>
+      <span class="divider"></span>
+      <span class="app-name">Campaign Insights</span>
+    </div>
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <span>Pharma Solutions</span><span class="sep">/</span><span>Program Explorer</span>
+    </nav>
+    <div class="updated" id="updated"></div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Program Explorer</h1>
+      <p>Pick a program to see its tactics, then a tactic to see why it's performing the way it is and what to change.</p>
+    </div>
+    <div class="asof">
+      <label for="week">As of week ending <strong id="weekLabel"></strong></label>
+      <div class="asof-row">
+        <button id="play" class="btn-play" aria-label="Replay weeks">▶</button>
+        <input type="range" id="week" min="0" max="0" step="1">
+      </div>
+    </div>
+  </section>
+
+  <section class="filters" aria-label="Filters">
+    <input type="search" id="q" placeholder="Search SF number, brand, client, condition…">
+    <select id="fClient"><option value="">All clients</option></select>
+    <select id="fTA"><option value="">All therapy areas</option></select>
+    <select id="fMG"><option value="">All media groups</option></select>
+    <select id="fStatus">
+      <option value="live">Live programs</option>
+      <option value="">All programs</option>
+      <option value="done">Completed</option>
+    </select>
+    <select id="fFlag">
+      <option value="">Any performance</option>
+      <option value="red">Has a tactic below benchmark</option>
+      <option value="allblack">All tactics above benchmark</option>
+    </select>
+    <select id="sort" aria-label="Sort">
+      <option value="opp">Sort: Biggest Dx opportunity</option>
+      <option value="worst">Sort: Furthest below benchmark</option>
+      <option value="best">Sort: Furthest above benchmark</option>
+      <option value="imps">Sort: Most impressions</option>
+      <option value="freq">Sort: Highest frequency</option>
+    </select>
+  </section>
+
+  <section class="kpis" id="kpis" aria-label="Portfolio summary"></section>
+
+  <main>
+    <div class="list-head">
+      <div class="lh-count" id="count"></div>
+      <div class="legend">
+        <span class="flag above"><i>▲</i>Above benchmark</span>
+        <span class="flag below"><i>▼</i>Below benchmark</span>
+        <span class="flag low"><i>?</i>Low confidence</span>
+      </div>
+    </div>
+    <div class="cols prog-cols" aria-hidden="true">
+      <span></span><span>Program</span><span>Condition</span><span>Flight</span>
+      <span class="r">Imps delivered</span><span class="r">Frequency</span><span class="r">Dx uniques</span>
+      <span>Dx vs. benchmark</span><span>Trend</span><span>Tactics</span>
+    </div>
+    <div id="list" class="list"></div>
+    <button id="more" class="btn-more">Show more programs</button>
+  </main>
+
+  <footer class="foot">
+    Synthetic, anonymized data for demonstration. Clients, brands, agencies and results are fictional.
+  </footer>
+
+  <div id="tip" class="tip" role="tooltip" hidden></div>
+
+  <!-- Tableau Extensions API — must load before data-source.js -->
+  <script src="tableau.extensions.1.latest.min.js"></script>
+  <!-- data-source.js: loads live data from Tableau or falls back to static data.js -->
+  <script src="data-source.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
